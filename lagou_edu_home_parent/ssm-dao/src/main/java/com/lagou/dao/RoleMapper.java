@@ -32,6 +32,15 @@ public interface RoleMapper {
      */
     public void deleteRole(Integer roleId);
 
+    /*
+        添加角色
+     */
+    public void saveRole(Role role);
+
+    /*
+        修改角色
+     */
+    public void updateRole(Role role);
 
 
 

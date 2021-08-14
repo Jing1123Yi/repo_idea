@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -88,6 +89,25 @@ public class RoleController {
         return new ResponseResult(true,200,"删除角色成功",null);
     }
 
+    /*
+        添加&修改角色
+     */
+    @RequestMapping("/saveOrUpdateRole")
+    public ResponseResult saveOrUpdateRole(@RequestBody Role role) {
+
+
+        Date date = new Date();
+        if (role.getId() == null){
+            role.setCreatedTime(date);
+            role.setUpdatedTime(date);
+            roleService.saveRole(role);
+            return new ResponseResult(true,200,"添加角色成功",null);
+        } else {
+            role.setUpdatedTime(date);
+            roleService.updateRole(role);
+            return new ResponseResult(true,200,"修改角色成功",null);
+        }
+    }
 
 
 
